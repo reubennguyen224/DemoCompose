@@ -1,5 +1,6 @@
 package com.demoapp.democompose.ui.screens.login
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -31,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.demoapp.democompose.HomeActivity
 import com.demoapp.democompose.R
 import com.demoapp.democompose.ui.screens.common.CustomTextField
 import com.demoapp.democompose.ui.screens.common.NormalButton
@@ -43,15 +46,13 @@ import com.demoapp.democompose.ui.theme.secondaryText
 fun LoginScreen(
     loginViewModel: LoginViewModel = viewModel(),
     onNavigateToSignUp: () -> Unit,
-    onNavigateToLoginSuccessRoute: () -> Unit,
 ) {
     val uiState by remember {
         loginViewModel.uiState
     }
     if (uiState.isLoginSuccess) {
-        LaunchedEffect(key1 = true) {
-            onNavigateToLoginSuccessRoute.invoke()
-        }
+        val mContext = LocalContext.current
+        mContext.startActivity(Intent(mContext, HomeActivity::class.java))
     } else {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -174,6 +175,5 @@ fun LoginScreen(
 fun PreviewLogin() {
     LoginScreen(
         onNavigateToSignUp = {},
-        onNavigateToLoginSuccessRoute = {}
     )
 }
