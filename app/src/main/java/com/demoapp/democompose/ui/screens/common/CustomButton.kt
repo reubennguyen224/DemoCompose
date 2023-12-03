@@ -1,4 +1,4 @@
-package com.demoapp.democompose.ui
+package com.demoapp.democompose.ui.screens.common
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -31,7 +31,7 @@ fun NormalButton(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(9.dp)
+            .padding(start = 9.dp, end = 9.dp)
     ) {
         Text(text = text, fontSize = 16.sp, fontWeight = FontWeight.Bold)
     }
