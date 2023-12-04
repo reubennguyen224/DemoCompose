@@ -25,7 +25,6 @@ import com.demoapp.democompose.ui.screens.home.state.ListTask
 import com.demoapp.democompose.ui.screens.home.state.Task
 import com.demoapp.democompose.ui.screens.home.state.User
 import com.demoapp.democompose.ui.theme.hintColor
-import com.demoapp.democompose.ui.theme.primaryColor
 import com.demoapp.democompose.ui.theme.subTextColor
 import com.demoapp.democompose.ui.theme.titleColor
 import com.demoapp.democompose.ui.theme.white
@@ -40,7 +39,12 @@ fun HomeScreen() {
             cancelTaskList = ListTask(listOf(Task(title = "test"))),
             onGoingTaskList = ListTask(listOf(Task(title = "test")))
         ),
-        ListTask(listOf(Task(title = "test"), Task(title = "test")))
+        ListTask(
+            listOf(
+                Task(title = "test", timeBegin = "7:00", timeEnd = "8:00"),
+                Task(title = "test", timeBegin = "7:00", timeEnd = "8:00")
+            )
+        )
     )
     LazyColumn() {
         items(tempList) { item ->
@@ -107,10 +111,15 @@ fun HomeScreen() {
                             fontSize = 24.sp,
                             color = titleColor,
                         )
-                        Text(text = "View all", color = subTextColor, fontSize = 12.sp, modifier = Modifier.align(Alignment.CenterVertically))
+                        Text(
+                            text = "View all",
+                            color = subTextColor,
+                            fontSize = 12.sp,
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        )
                     }
                     item.list.forEach {
-                        ItemTask(task = it)
+                        ItemTask(task = it, modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 10.dp))
                     }
                 }
             }

@@ -13,7 +13,7 @@ data class ListTask(
 data class Task(
     val status: StatusTask = StatusTask.Completed,
     val title: String = "",
-    val tags: Tags = Tags.Home,
+    val tags: List<Tags> = listOf(Tags.Home),
     val type: TypeTask = TypeTask.Personal,
     val date: String = "",
     val timeBegin: String = "",
