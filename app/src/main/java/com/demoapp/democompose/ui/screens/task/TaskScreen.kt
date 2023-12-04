@@ -135,6 +135,18 @@ fun TaskScreen(
             )
         }
         LazyColumn(modifier = Modifier.padding(24.dp)) {
+            if (dumpListTak.isEmpty()){
+                item {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+                        Image(painter = painterResource(id = R.drawable.ic_blank_task), contentDescription = "blank")
+                        Text(
+                            text = "You don’t have any schedule today. \nTap the plus button to create new to-do.",
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+            } else
             items(dumpListTak) {
                 Divider(thickness = 1.dp, modifier = Modifier.fillMaxWidth())
                 Row(
