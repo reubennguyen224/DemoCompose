@@ -2,12 +2,14 @@ package com.demoapp.democompose.ui.screens.home.state
 
 data class User(
     val username: String = "",
-    val completedTaskList: List<Task> = emptyList(),
-    val pendingTaskList: List<Task> = emptyList(),
-    val cancelTaskList: List<Task> = emptyList(),
-    val onGoingTaskList: List<Task> = emptyList()
+    val completedTaskList: ListTask,
+    val pendingTaskList: ListTask,
+    val cancelTaskList: ListTask,
+    val onGoingTaskList: ListTask
 )
-
+data class ListTask(
+    val list: List<Task> = emptyList()
+)
 data class Task(
     val status: StatusTask = StatusTask.Completed,
     val title: String = "",

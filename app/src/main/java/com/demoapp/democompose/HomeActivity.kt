@@ -147,7 +147,8 @@ fun BottomBar(navController: NavHostController) {
 fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
-    navController: NavHostController
+    navController: NavHostController,
+    needIndicator: Boolean = false
 ){
     val selected = currentDestination?.hierarchy?.any { it.route == screen.route} == true
 
@@ -161,9 +162,7 @@ fun RowScope.AddItem(
     ) {
         Column {
             Image(painter = painterResource(id = if (selected) screen.icon_focused else screen.icon), contentDescription = "icon")
-            AnimatedVisibility(visible = selected) {
-                Image(painter = painterResource(id = R.drawable.ic_dot), contentDescription = "icon")
-            }
+            Image(painter = painterResource(id = R.drawable.ic_dot), contentDescription = "icon")
         }
     }
 }

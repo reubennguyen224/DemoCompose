@@ -1,6 +1,7 @@
 package com.demoapp.democompose.ui.screens.common
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -55,14 +56,18 @@ fun TaskCard(
         modifier = modifier
             .padding(8.dp)
             .height(height)
-            .width(155.dp)
-            ,
+            .width(155.dp),
         shape = RoundedCornerShape(14.dp)
     ) {
         Column(
             modifier = Modifier.paint(background)
         ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Image(
                     painter = icon,
                     contentDescription = "",
@@ -70,8 +75,7 @@ fun TaskCard(
                         .padding(top = 10.dp, start = 14.dp)
                         .wrapContentHeight()
                 )
-                if (needSpace)
-                    Spacer(modifier = Modifier.padding(28.dp))
+
                 Image(
                     painter = painterResource(id = R.drawable.arrow___right),
                     contentDescription = "",
@@ -83,15 +87,21 @@ fun TaskCard(
 
             Text(
                 text = label, style = TextStyle(
-                    fontSize = 16.sp, fontWeight = FontWeight.Medium, color = if (isWhiteTextColor) white else textColor
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = if (isWhiteTextColor) white else textColor
                 ), modifier = Modifier.padding(start = 15.dp, top = 7.dp)
             )
-            
-            Text(text = buildAnnotatedString {
-                append(numberTask.toString())
-                append(" Task")
-            }, modifier = Modifier.padding(start = 15.dp, top = 7.dp, bottom = 15.dp), style = TextStyle(
-                fontSize = 14.sp, color = if (isWhiteTextColor) white else textColor)
+
+            Text(
+                text = buildAnnotatedString {
+                    append(numberTask.toString())
+                    append(" Task")
+                },
+                modifier = Modifier.padding(start = 15.dp, top = 7.dp, bottom = 15.dp),
+                style = TextStyle(
+                    fontSize = 14.sp, color = if (isWhiteTextColor) white else textColor
+                )
             )
         }
     }
