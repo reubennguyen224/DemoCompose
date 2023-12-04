@@ -79,6 +79,43 @@ fun ItemTask(modifier: Modifier = Modifier, task: Task = Task()) {
     }
 }
 
+@Composable
+fun SmallItemTask(modifier: Modifier = Modifier, task: Task = Task()) {
+    Card(
+        modifier = modifier, shape = RoundedCornerShape(15.dp),
+        colors = CardDefaults.cardColors(cardColor)
+    ) {
+        Row(modifier = Modifier
+            .width(190.dp)
+            .padding(15.dp),
+            horizontalArrangement = Arrangement.SpaceBetween){
+            Column(horizontalAlignment = Alignment.Start, modifier = Modifier) {
+                Row {
+                    Divider(modifier = Modifier
+                        .width(2.dp)
+                        .height(35.dp), color = getColor(task)
+                    )
+                    Column {
+                        Text(text = task.title, fontWeight = FontWeight.Medium, fontSize = 16.sp, color = textColor, modifier = Modifier.padding(start = 10.dp))
+                        Text(text = buildAnnotatedString {
+                            append(task.timeBegin)
+                            append(" - ")
+                            append(task.timeEnd)
+                        }, color = hintColor, fontSize = 14.sp, modifier = Modifier.padding(start = 10.dp))
+
+                        LazyRow(modifier = Modifier.padding(top = 15.dp, start = 10.dp)){
+                            items(task.tags){
+                                Tag(name = it.name)
+                            }
+                        }
+                    }
+                }
+            }
+            Image(painter = painterResource(id = R.drawable.ic_more), contentDescription = "more")
+        }
+    }
+}
+
 fun getColor(task: Task): Color{
     return when (task.status) {
         StatusTask.Completed -> bgComplete

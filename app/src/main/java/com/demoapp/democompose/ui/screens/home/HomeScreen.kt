@@ -1,9 +1,11 @@
 package com.demoapp.democompose.ui.screens.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -46,7 +48,7 @@ fun HomeScreen() {
             )
         )
     )
-    LazyColumn() {
+    LazyColumn(modifier = Modifier.padding(bottom = 100.dp)) {
         items(tempList) { item ->
             when (item) {
                 is User -> {
@@ -119,7 +121,7 @@ fun HomeScreen() {
                         )
                     }
                     item.list.forEach {
-                        ItemTask(task = it, modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 10.dp))
+                        ItemTask(task = it, modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 10.dp).clickable {  })
                     }
                 }
             }

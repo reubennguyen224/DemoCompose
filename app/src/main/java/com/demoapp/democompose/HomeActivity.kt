@@ -40,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.demoapp.democompose.ui.screens.common.BottomBarScreen
 import com.demoapp.democompose.ui.screens.createtask.CreateTask
 import com.demoapp.democompose.ui.screens.home.HomeScreen
+import com.demoapp.democompose.ui.screens.task.TaskScreen
 import com.demoapp.democompose.ui.theme.DemoComposeTheme
 import com.demoapp.democompose.ui.theme.white
 
@@ -61,7 +62,7 @@ fun HomeApp() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-
+        BottomNav()
     }
 }
 
@@ -78,7 +79,7 @@ fun HomeAppNavHost(
             HomeScreen()
         }
         composable(route = BottomBarScreen.Document.route) {
-
+            TaskScreen()
         }
         composable(route = BottomBarScreen.Create.route) {
             CreateTask()
@@ -159,7 +160,7 @@ fun RowScope.AddItem(
             }
         }
     ) {
-        Column {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
                 painter = painterResource(id = if (selected) screen.icon_focused else screen.icon),
                 contentDescription = "icon"
